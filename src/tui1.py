@@ -1,13 +1,8 @@
 """
 Terminal User Interface (TUI) for RAG Application
 
-This module provides a simple terminal-based conversational interface
+This module provides a simple terminal based conversational interface
 for interacting with the RAG system.
-
-Customization:
-- Change DEFAULT_SYSTEM_PROMPT to modify the AI assistant's behavior
-- Modify conversation format in the TUI class
-- You can pass a custom system prompt when creating the TUI instance
 """
 import os
 import sys
@@ -16,10 +11,8 @@ from typing import Optional
 # Add the parent directory to sys.path to import local modules
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-
 from src.llm.llama3_8b_api import Llama3_8B_API
 import random
-
 
 from src.chunker.embedder import DocumentEmbedder
 from src.personality_config import AGENT_NAME, THINKING_MESSAGES, APP_TITLE, APP_DISCLAIMER, USER_INPUT_LIMIT, DEFAULT_SYSTEM_PROMPT
@@ -59,21 +52,18 @@ def print_introduction():
     intro_text = f"""
 {Colors.BOLD}{APP_TITLE}{Colors.END}
 
-This prototype provides information about Unitree products including corresponding research papers and manuals.
-
 {Colors.BOLD}Instructions:{Colors.END}
 - Type your questions about Unitree products
 - Type 'quit' to exit
 
 {Colors.BOLD}Session Limit:{Colors.END} {USER_INPUT_LIMIT} queries per session
-{Colors.BOLD}Questions?{Colors.END} Contact Tom King at KingTL@ccsu.edu
+{Colors.BOLD}Questions?{Colors.END} Contact Thomas L. King at KingTL@ccsu.edu
 
 {APP_DISCLAIMER}
 """
     print(intro_text)
 
 class TUI:
-    """Terminal User Interface for the RAG application (with Meta-Llama-3-8B integration)."""
     def __init__(self, embedder: DocumentEmbedder, system_prompt=DEFAULT_SYSTEM_PROMPT):
         # Store the embedder for RAG retrieval
         self.embedder = embedder
@@ -115,7 +105,7 @@ class TUI:
                     break
                 if not user_input.strip():
                     continue  # Disregard empty input
-                  # Add user message to conversation history
+                # Add user message to conversation history
                 conversation_messages.append({"role": self.user_role, "content": user_input})
                 self.history.append(f"User: {user_input}")
                 
@@ -150,12 +140,12 @@ class TUI:
                 self.llm.unload_model()
 
 def main():
-    # Initialize embedder and load Unitree vector store
+    # Initialize embedder
     embedder = DocumentEmbedder(use_gpu_config=False)
-    embedder.load_vector_store("go2_robot_vector_store")
+    embedder.load_vector_store("go2_robot_vector_store") # Here we load the vector store. In this case it's the unitree research documents.
 
     custom_prompt = DEFAULT_SYSTEM_PROMPT
-    # Pass the embedder into TUI
+
     tui = TUI(embedder, system_prompt=custom_prompt)
     tui.run()
 

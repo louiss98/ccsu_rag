@@ -48,7 +48,7 @@ class Llama3_8B_API:
     def generate_response(self, messages):
         formatted_prompt = self.format_prompt(messages)
         
-        outputs = self.pipe(formatted_prompt, max_new_tokens=128, do_sample=True, temperature=0.45)
+        outputs = self.pipe(formatted_prompt, max_new_tokens=400, do_sample=True, temperature=0.45)
         response = outputs[0]['generated_text']
         assistant_prefix = "<|start_header_id|>assistant<|end_header_id|>\n"
         if assistant_prefix in response:
