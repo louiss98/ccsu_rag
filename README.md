@@ -1,5 +1,7 @@
 This is a prototype Retrieval-Augmented Generation (RAG) application developed for Central Connecticut State University IT. It is intended for internal use only. All responses are AI-generated and do not represent the views of any group, department, individual, or organization.
 
+![Screenshot of CCSU RAG Application Running](sample/Screenshot%202025-07-08%20132307.png)
+
 ## Hardware Requirements
 
 - **GPU:** Minimum 24GB VRAM (NVIDIA RTX 3090, A5000, or better recommended)

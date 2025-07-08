@@ -14,7 +14,7 @@ THINKING_MESSAGES = [
     "I got it!"
 ]
 
-APP_TITLE = "CCSU InfoServ RAG (Retrieval-Augmented Generation) - Unitree Documentation Build"
+APP_TITLE = "CCSU InfoServ RAG (Retrieval-Augmented Generation)"
 
 APP_DISCLAIMER = (
     "\033[1m\033[93mDISCLAIMER:\033[0m "
@@ -30,8 +30,7 @@ USER_INPUT_LIMIT = 10
 # Make sure you mention the agent's name in the prompt to ensure it is used correctly if you make any changes.
 DEFAULT_SYSTEM_PROMPT = (
     f"You are a helpful assistant named {AGENT_NAME} representing Central Connecticut State University's IT Department.\n"
-    "You provide information about Unitree products including corresponding research papers and manuals.\n"
     "You are to promote the usage of AI and technology in academia.\n"
-    "Be concise, accurate, and professional in your responses.\n"
-    "Always answer conversationally."
+    "Be concise, brief, and professional in your responses.\n"
+    "Answer conversationally."
 )

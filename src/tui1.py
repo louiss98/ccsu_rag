@@ -53,8 +53,8 @@ def print_introduction():
 {Colors.BOLD}{APP_TITLE}{Colors.END}
 
 {Colors.BOLD}Instructions:{Colors.END}
-- Type your questions about Unitree products
-- Type 'quit' to exit
+- Type your questions and press ENTER to submit
+- Enter 'quit' to exit
 
 {Colors.BOLD}Session Limit:{Colors.END} {USER_INPUT_LIMIT} queries per session
 {Colors.BOLD}Questions?{Colors.END} Contact Thomas L. King at KingTL@ccsu.edu
@@ -65,7 +65,6 @@ def print_introduction():
 
 class TUI:
     def __init__(self, embedder: DocumentEmbedder, system_prompt=DEFAULT_SYSTEM_PROMPT):
-        # Store the embedder for RAG retrieval
         self.embedder = embedder
         self.history = []
         self.exit_commands = ["quit",]
@@ -109,7 +108,7 @@ class TUI:
                 conversation_messages.append({"role": self.user_role, "content": user_input})
                 self.history.append(f"User: {user_input}")
                 
-                if random.random() < 0.25:
+                if random.random() < 0.3:
                     print_agent_message(random.choice(THINKING_MESSAGES))
 
                 if self.needs_rag(user_input, conversation_messages):
@@ -122,7 +121,6 @@ class TUI:
 
                 response = self.llm.generate_response(conversation_messages)
                 
-                print("\033[A\033[K", end="")  # Clear the "Thinking..." line
                 print_agent_message(response)
                 
                 # Add assistant response to conversation history

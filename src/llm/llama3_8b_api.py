@@ -23,7 +23,8 @@ class Llama3_8B_API:
             model=model_name,
             tokenizer=self.tokenizer,
             device_map="auto",
-            torch_dtype=torch.float16
+            torch_dtype=torch.float16,
+            pad_token_id=self.tokenizer.eos_token_id
         )
 
     def format_prompt(self, messages):
