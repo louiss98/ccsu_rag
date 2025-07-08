@@ -29,12 +29,30 @@ A sample data source is included in the `data` folder. To add a new data source,
 
 **Supported file types:** `.docx`, `.pdf`, `.txt`
 
-To process your data, run the chunker script:
+To process your data, run the chunker/embedd script:
 
 ```bash
-python src/chunker/embedder.py --input_folder "data/new_data_source" --output_store "new_data_source_vector_store"
+python src/chunker/embedder.py --input_folder "data/input/new_data_source" --output_store "data/vector_db/new_data_source_vector_store"
 ```
 
+This app utilizes sentence-transformers model all-MiniLM-L6-v2
+More information here: [all-MiniLM-L6-v2](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2)
+
 **Note:** FAISS-CPU is used for chunking. Please ensure your processor is capable.
+
+## Usage
+
+This application allows you to customize the AI assistant's personality. To do this, edit the `llm/personality_config.py` file.
+
+```python
+DEFAULT_SYSTEM_PROMPT = (
+    f"You are a helpful assistant named {AGENT_NAME} representing ...\n"
+    "Answer questions about ... "
+    "Be respectful, kind, ..."
+)
+# ...
+```
+
+Adjust the prompt as needed to change the assistant's tone or behavior.
 
 **Application entry point:** `tui1.py`

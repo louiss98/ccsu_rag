@@ -15,7 +15,7 @@ from src.llm.llama3_8b_api import Llama3_8B_API
 import random
 
 from src.chunker.embedder import DocumentEmbedder
-from src.personality_config import AGENT_NAME, THINKING_MESSAGES, APP_TITLE, APP_DISCLAIMER, USER_INPUT_LIMIT, DEFAULT_SYSTEM_PROMPT
+from src.llm.personality_config import AGENT_NAME, THINKING_MESSAGES, APP_TITLE, APP_DISCLAIMER, USER_INPUT_LIMIT, DEFAULT_SYSTEM_PROMPT
 
 # ANSI color codes for terminal output
 class Colors:
@@ -142,7 +142,7 @@ class TUI:
 def main():
     # Initialize embedder
     embedder = DocumentEmbedder(use_gpu_config=False)
-    embedder.load_vector_store("go2_robot_vector_store") # Here we load the vector store. In this case it's the unitree research documents.
+    embedder.load_vector_store("./data/vector_db/go2_robot_vector_store") # Here we load the vector store. In this case it's the unitree research documents.
 
     custom_prompt = DEFAULT_SYSTEM_PROMPT
 

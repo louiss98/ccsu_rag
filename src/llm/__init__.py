@@ -1,4 +1,4 @@
 """
-LLM module for CCSU RAG application.
+LLM module
 Contains implementations for different LLM APIs.
 """
